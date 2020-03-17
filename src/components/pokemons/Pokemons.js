@@ -1,14 +1,23 @@
-import React, {useState, useEffect } from 'react'
-import axios from 'axios'
-
+import React from 'react'
+import Spinner from '../layout/spinner/Spinner'
+import Pokemon from './Pokemon'
+import './Pokemon.css'
 
 
 const Pokemons = (props) => {
-    return (
-        <>
-         {console.log(props.pokeArray)}
-        </>
-    )
+    if(props.loading) {
+        return (
+            <Spinner />
+        )
+    } else {
+        return (
+            <div className="pokeStyle">
+                {props.pokeArray.map(poke => (
+                    <Pokemon poke={poke} key={poke.data.id}/>   
+                ))}
+            </div>
+        )
+    }
 }
 
 export default Pokemons

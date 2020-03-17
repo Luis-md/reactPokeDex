@@ -1,0 +1,27 @@
+.pokeStyle {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 0.5rem;
+    row-gap: 1rem;
+    justify-self: center;
+}
+
+.ballUp {
+    height: 50px;
+    width: 100px;
+    background: red;
+    border: 1px solid black;
+    border-radius: 50px 50px 0px 0px;
+    text-align: center;
+    padding-top: 10px;
+  }
+  
+  .ballDown {
+    height: 50px;
+    width: 100px;
+    background: white;
+    border: 1px solid black;
+    border-radius: 0px 0px 50px 50px;
+    text-align: center;
+    color: black;
+}
