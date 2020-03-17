@@ -7,21 +7,27 @@
 }
 
 .ballUp {
-    height: 50px;
-    width: 100px;
+    height: 100px;
+    width: 150px;
     background: red;
     border: 1px solid black;
-    border-radius: 50px 50px 0px 0px;
+    border-radius: 100px 100px 0px 0px;
     text-align: center;
     padding-top: 10px;
   }
   
   .ballDown {
-    height: 50px;
-    width: 100px;
+    text-align: center;
+    height: 100px;
+    width: 150px;
     background: white;
     border: 1px solid black;
-    border-radius: 0px 0px 50px 50px;
+    border-radius: 0px 0px 100px 100px;
     text-align: center;
     color: black;
+    padding-top: 0.5em;
+}
+
+.ballDown p {
+    font-size: 20px;
 }

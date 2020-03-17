@@ -22,22 +22,43 @@ function App() {
     fetchData()
   }, [])
 
-  const fetchPokesHandler = async () => {
+  const fetchPokesHandler = async (call) => {
+    console.log(call)
     setLoading(true)
-    let newPokeArray = await axios.all(pokeCall.map( e => axios.get(e.url)))
-
+    let newPokeArray = await axios.all(call.map( e => axios.get(e.url)))
     setPokemon(newPokeArray)
     setLoading(false)
+  }
+
+  const loadData = async (url) => {
+    async function fetch () {
+      const result = await axios(url)
+      setNext(result.data.next)
+      setPrevious(result.data.previous)
+      setPokeCall(result.data.results)
+      fetchPokesHandler(result.data.results)
+    } fetch()
+  }
+
+  const morePokeHandler = action => {
+     loadData(action)
   }
 
   const info = pokes.length === 0 ? 
   <div>
     <h1 className="welcome">Welcome to pokedex!</h1> 
-    <button className="btn next round" onClick={fetchPokesHandler}> Fetch data</button>
+    <button className="btn next round" onClick={() => fetchPokesHandler(pokeCall)}> Fetch data</button>
   </div> : 
-  <div>
-      <button disabled={hasPrevious != null ? false : true} className="btn next round">Previous</button> 
-      <button disabled={hasNext != null ? false : true} className="btn next round">Next</button> 
+  <div className="align-center">
+      <button 
+        disabled={hasPrevious != null ? false : true} 
+        className="btn next round" 
+        onClick={() => morePokeHandler(hasPrevious)}>Previous</button> 
+
+      <button 
+        disabled={hasNext != null ? false : true} 
+        className="btn next round" 
+        onClick={() => morePokeHandler(hasNext)}>Next</button> 
   </div>
   return (
     
